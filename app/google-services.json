@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "864081632531",
+    "firebase_url": "https://citizen-march.firebaseio.com",
+    "project_id": "citizen-march",
+    "storage_bucket": "citizen-march.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:864081632531:android:7ccf2b75e6065bd4b58ee6",
+        "android_client_info": {
+          "package_name": "com.project.segunfrancis.citizenmarch"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "864081632531-avthekt18s5eqqp6jm90mktdpgabiq50.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.project.segunfrancis.citizenmarch",
+            "certificate_hash": "3a717cc81d8b128c2ae6ca7d5578f223aa77b374"
+          }
+        },
+        {
+          "client_id": "864081632531-nv0lr4hab9se49qt64giqbpeagssb5o9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjqL3bZW51aCf0izuIvnWfyxVsacayGzI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "864081632531-nv0lr4hab9se49qt64giqbpeagssb5o9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
