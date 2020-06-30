@@ -22,4 +22,10 @@
         android:name="com.project.segunfrancis.citizenmarch.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_sign_out"
         tools:layout="@layout/fragment_slideshow" />
+
+    <fragment
+        android:id="@+id/nav_create_march"
+        android:name="com.project.segunfrancis.citizenmarch.ui.createMarch.CreateMarchFragment"
+        android:label="@string/menu_create_march"
+        tools:layout="@layout/fragment_create_march" />
 </navigation>

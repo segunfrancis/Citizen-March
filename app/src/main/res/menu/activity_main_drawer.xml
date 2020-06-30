@@ -10,7 +10,7 @@
             android:title="@string/menu_home" />
         <item
             android:id="@+id/nav_create_march"
-            android:icon="@drawable/ic_launcher_foreground"
+            android:icon="@drawable/ic_menu_create_march"
             android:title="@string/menu_create_march" />
         <item
             android:id="@+id/nav_settings"
