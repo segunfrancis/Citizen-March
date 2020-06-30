@@ -72,7 +72,12 @@ public class MainActivity extends AppCompatActivity {
         TextView email = header.findViewById(R.id.profile_email);
         mViewModel.name().observe(this, name::setText);
         mViewModel.email().observe(this, email::setText);
-        mViewModel.profilePhotoUrl().observe(this, s -> Glide.with(getApplicationContext()).load(s).into(imageView));
+        mViewModel.profilePhotoUrl().observe(this, s ->
+                Glide.with(getApplicationContext())
+                        .load(s)
+                        .placeholder(R.drawable.default_profile_image)
+                        .error(R.drawable.default_profile_image)
+                        .into(imageView));
     }
 
     @Override

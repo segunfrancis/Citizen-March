@@ -21,15 +21,15 @@ public class MainViewModel extends ViewModel {
     private MutableLiveData<String> _email = new MutableLiveData<>();
     private MutableLiveData<String> _profilePhotoUrl = new MutableLiveData<>();
 
-    public LiveData<String> name() {
+    LiveData<String> name() {
         return _name;
     }
 
-    public LiveData<String> email() {
+    LiveData<String> email() {
         return _email;
     }
 
-    public LiveData<String> profilePhotoUrl() {
+    LiveData<String> profilePhotoUrl() {
         return _profilePhotoUrl;
     }
 

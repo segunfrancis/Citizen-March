@@ -16,4 +16,6 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="sign_in">Sign In</string>
+    <string name="add_photo_image">click on image to add a photo</string>
+    <string name="march_photo">photo of the march</string>
 </resources>
