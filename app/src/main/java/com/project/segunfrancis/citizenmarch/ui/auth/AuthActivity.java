@@ -18,10 +18,14 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.project.segunfrancis.citizenmarch.pojo.User;
 import com.project.segunfrancis.citizenmarch.ui.main.MainActivity;
 import com.project.segunfrancis.citizenmarch.R;
 
 import static com.project.segunfrancis.citizenmarch.utility.AppConstants.RC_SIGN_IN;
+import static com.project.segunfrancis.citizenmarch.utility.AppConstants.USERS_DATABASE_REFERENCE;
 
 public class AuthActivity extends AppCompatActivity {
 
@@ -72,6 +76,13 @@ public class AuthActivity extends AppCompatActivity {
         mAuth.signInWithCredential(credential).addOnCompleteListener(this, task -> {
             if (task.isSuccessful()) {
                 startActivity(new Intent(AuthActivity.this, MainActivity.class));
+                DatabaseReference reference = FirebaseDatabase.getInstance().getReference(USERS_DATABASE_REFERENCE);
+                String userId = mAuth.getCurrentUser().getUid();
+                User user = new User();
+                user.setName(mAuth.getCurrentUser().getDisplayName());
+                user.setProfilePhotoUrl(mAuth.getCurrentUser().getPhotoUrl().toString());
+                user.setUserId(userId);
+                reference.child(userId).setValue(user);
                 finish();
             } else {
                 displaySnackBar(task.getException().getLocalizedMessage());

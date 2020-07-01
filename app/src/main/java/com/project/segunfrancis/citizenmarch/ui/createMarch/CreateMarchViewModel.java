@@ -94,7 +94,7 @@ public class CreateMarchViewModel extends ViewModel {
         _createMarchProgress.setValue(States.LOADING);
         String key = mReference.push().getKey();
         march.setMarchId(key);
-        mReference.push().setValue(march).addOnCompleteListener(task -> {
+        mReference.child(key).setValue(march).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 _createMarchProgress.setValue(States.SUCCESS);
                 _createMarchMessage.setValue("Successfully created");

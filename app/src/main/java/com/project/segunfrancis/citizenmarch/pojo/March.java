@@ -1,6 +1,7 @@
 package com.project.segunfrancis.citizenmarch.pojo;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -14,7 +15,7 @@ public class March implements Serializable {
     private String time;
     private String location;
     private String description;
-    private List<User> attendees = null;
+    private List<String> attendees = Arrays.asList("");
     private String hashTags;
     private String marchPhotoUrl = "";
 
@@ -74,11 +75,11 @@ public class March implements Serializable {
         this.description = description;
     }
 
-    public List<User> getAttendees() {
+    public List<String> getAttendees() {
         return attendees;
     }
 
-    public void setAttendees(List<User> attendees) {
+    public void setAttendees(List<String> attendees) {
         this.attendees = attendees;
     }
 

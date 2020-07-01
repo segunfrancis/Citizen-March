@@ -1,37 +1,75 @@
 package com.project.segunfrancis.citizenmarch.ui.marchdetails;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.project.segunfrancis.citizenmarch.R;
 import com.project.segunfrancis.citizenmarch.pojo.March;
+import com.project.segunfrancis.citizenmarch.pojo.User;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.project.segunfrancis.citizenmarch.utility.AppConstants.HOME_FRAGMENT_TO_DETAIL_ACTIVITY_INTENT;
+import static com.project.segunfrancis.citizenmarch.utility.AppConstants.MARCHES_DATABASE_REFERENCE;
 
 public class MarchDetailsActivity extends AppCompatActivity {
+
+    private MarchDetailsViewModel mViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_march_details);
 
+        mViewModel = new ViewModelProvider(this).get(MarchDetailsViewModel.class);
         ExtendedFloatingActionButton extFab = findViewById(R.id.attend_fab);
+        final List<String> attendees;
+        User currentUser = new User();
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference(MARCHES_DATABASE_REFERENCE);
+        currentUser.setUserId(auth.getCurrentUser().getUid());
+        currentUser.setProfilePhotoUrl(auth.getCurrentUser().getPhotoUrl().toString());
+        currentUser.setName(auth.getCurrentUser().getDisplayName());
 
         Intent intent = getIntent();
         if (intent != null) {
             populateLayout((March) intent.getSerializableExtra(HOME_FRAGMENT_TO_DETAIL_ACTIVITY_INTENT));
+            March march = (March) intent.getSerializableExtra(HOME_FRAGMENT_TO_DETAIL_ACTIVITY_INTENT);
+            attendees = march.getAttendees();
+            extFab.setOnClickListener(view -> {
+                attendees.add(currentUser.getUserId());
+                reference.child(march.getMarchId()).child("attendees").setValue(attendees);
+            });
+
+            if (attendees != null) {
+                if (attendees.contains(currentUser.getUserId())) { // User is already attending
+                    extFab.setText("Attending");
+                } else { // User isn't attending
+
+                }
+            }
         } else {
             finish();
         }
     }
 
     private void populateLayout(March march) {
+        mViewModel.setMarch(march);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(march.getTitle());
+        }
         TextView title = findViewById(R.id.march_detail_title_TV);
         TextView description = findViewById(R.id.march_detail_description_TV);
         TextView location = findViewById(R.id.march_detail_location_TV);
