@@ -42,7 +42,11 @@ public class MarchRecyclerAdapter extends
             titleTextView.setText(march.getTitle());
             descriptionTextView.setText(march.getDescription());
             locationTextView.setText(march.getLocation());
-            Glide.with(marchImage.getContext()).load(march.getMarchPhotoUrl()).into(marchImage);
+            Glide.with(marchImage.getContext())
+                    .load(march.getMarchPhotoUrl())
+                    .placeholder(R.drawable.loading_animation)
+                    .error(R.drawable.ic_broken_image_24dp)
+                    .into(marchImage);
             itemView.setOnClickListener(v -> listener.onItemClick(march));
         }
     }
