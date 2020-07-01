@@ -16,7 +16,7 @@ public class March implements Serializable {
     private String description;
     private List<User> attendees = null;
     private String hashTags;
-    private String marchPhotoUrl;
+    private String marchPhotoUrl = "";
 
     public String getMarchId() {
         return marchId;
