@@ -17,16 +17,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputEditText;
 import com.project.segunfrancis.citizenmarch.databinding.FragmentCreateMarchBinding;
 import com.project.segunfrancis.citizenmarch.pojo.March;
 import com.project.segunfrancis.citizenmarch.utility.States;
 
 import static android.app.Activity.RESULT_OK;
 import static com.project.segunfrancis.citizenmarch.utility.AppConstants.MARCH_IMAGE_REQUEST_CODE;
-
 
 /**
  * A simple {@link Fragment} subclass.
@@ -55,32 +55,41 @@ public class CreateMarchFragment extends Fragment {
 
         // Display selected image
         mViewModel.imageBitmap().observe(getViewLifecycleOwner(), bitmap -> {
-                mBinding.marchImage.setImageBitmap(bitmap);
+            mBinding.marchImage.setImageBitmap(bitmap);
         });
 
         // Save March to database
         mBinding.buttonCreateMarch.setOnClickListener(v -> {
-            mViewModel.imageBitmap().observe(getViewLifecycleOwner(), bitmap -> {
-                March march = new March();
-                march.setCreatedBy(mViewModel.currentUserName());
-                march.setDescription(mBinding.marchDescriptionET.getText().toString());
-                march.setDate(mBinding.marchDate.getText().toString());
-                march.setTime(mBinding.marchTime.getText().toString());
-                march.setTitle(mBinding.marchTitleET.getText().toString());
-                march.setHashTags(mBinding.marchHashtagET.getText().toString());
-                march.setLocation(mBinding.marchLocationET.getText().toString());
+            if (!areTextFieldsEmpty()) {
+                if (!areDateTimeTextEmpty()) {
+                    if (hasImageBeenSelected()) {
+                        mViewModel.imageBitmap().observe(getViewLifecycleOwner(), bitmap -> {
+                            March march = new March();
+                            march.setCreatedBy(mViewModel.currentUserName());
+                            march.setDescription(mBinding.marchDescriptionET.getText().toString().trim());
+                            march.setDate(mBinding.marchDate.getText().toString().trim());
+                            march.setTime(mBinding.marchTime.getText().toString().trim());
+                            march.setTitle(mBinding.marchTitleET.getText().toString().trim());
+                            march.setHashTags(mBinding.marchHashtagET.getText().toString().trim());
+                            march.setLocation(mBinding.marchLocationET.getText().toString().trim());
 
-                mViewModel.uploadImageToFirebaseStorage(bitmap, imagePath, march);
-            });
+                            mViewModel.uploadImageToFirebaseStorage(bitmap, imagePath, march);
+                        });
+                    }
+                }
+            }
         });
 
         mBinding.addImage.setOnClickListener(v -> openGallery());
 
         mViewModel.createMarchProgress().observe(getViewLifecycleOwner(), states -> {
             switch (states) {
-                case SUCCESS: {}
-                case LOADING: {}
-                case ERROR: {}
+                case SUCCESS: {
+                }
+                case LOADING: {
+                }
+                case ERROR: {
+                }
             }
         });
         mViewModel.createMarchMessage().observe(getViewLifecycleOwner(), this::displaySnackBar);
@@ -144,5 +153,42 @@ public class CreateMarchFragment extends Fragment {
             return;
         }
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+
+    /*
+     * Validations
+     * */
+    private boolean areTextFieldsEmpty() {
+        TextInputEditText[] views = {mBinding.marchTitleET, mBinding.marchDescriptionET, mBinding.marchHashtagET, mBinding.marchLocationET};
+        for (TextInputEditText view : views) {
+            if (view.getText().toString().trim().isEmpty()) {
+                view.setError("This field is required");
+                view.requestFocus();
+                return true;
+            } else {
+                view.setError(null);
+            }
+        }
+        return false;
+    }
+
+    private boolean areDateTimeTextEmpty() {
+        TextView[] textViews = {mBinding.marchDate, mBinding.marchTime};
+        for (TextView textView : textViews) {
+            if (textView.getText().toString().isEmpty()) {
+                displaySnackBar("Please set date and time");
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean hasImageBeenSelected() {
+        if (mViewModel.imageBitmap().getValue() == null) {
+            displaySnackBar("Please select an image");
+            return false;
+        }
+        return true;
     }
 }

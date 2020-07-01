@@ -74,7 +74,6 @@ public class CreateMarchViewModel extends ViewModel {
                 task.getResult().getStorage().getDownloadUrl().addOnCompleteListener(urlTask -> {
                     if (urlTask.isSuccessful()) {
                         _createMarchMessage.setValue("Successfully uploaded image...");
-                        _createMarchProgress.setValue(States.SUCCESS);
                         String imageUrl = urlTask.getResult().toString();
                         // Add image url to Firebase
                         march.setMarchPhotoUrl(imageUrl);
