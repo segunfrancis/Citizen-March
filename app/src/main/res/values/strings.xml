@@ -33,4 +33,6 @@
     <string name="positive_dialog_title">YES</string>
     <string name="negative_dialog_title">NO</string>
     <string name="neutral_dialog_title">DISMISS</string>
+
+    <bool name="isTablet">false</bool>
 </resources>

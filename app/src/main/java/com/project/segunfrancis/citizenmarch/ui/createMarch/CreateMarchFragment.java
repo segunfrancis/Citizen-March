@@ -27,6 +27,7 @@ import com.project.segunfrancis.citizenmarch.utility.States;
 
 import static android.app.Activity.RESULT_OK;
 import static com.project.segunfrancis.citizenmarch.utility.AppConstants.MARCH_IMAGE_REQUEST_CODE;
+import static com.project.segunfrancis.citizenmarch.utility.AppConstants.hideSoftKeyboard;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -74,6 +75,7 @@ public class CreateMarchFragment extends Fragment {
                             march.setLocation(mBinding.marchLocationET.getText().toString().trim());
 
                             mViewModel.uploadImageToFirebaseStorage(bitmap, imagePath, march);
+                            hideSoftKeyboard(requireActivity());
                         });
                     }
                 }
