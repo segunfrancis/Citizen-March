@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,15 +17,16 @@ import com.project.segunfrancis.citizenmarch.R;
 import com.project.segunfrancis.citizenmarch.pojo.March;
 import com.project.segunfrancis.citizenmarch.pojo.User;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import static com.project.segunfrancis.citizenmarch.utility.AppConstants.ATTENDEES_DATABASE_REFERENCE;
 import static com.project.segunfrancis.citizenmarch.utility.AppConstants.HOME_FRAGMENT_TO_DETAIL_ACTIVITY_INTENT;
 import static com.project.segunfrancis.citizenmarch.utility.AppConstants.MARCHES_DATABASE_REFERENCE;
 
 public class MarchDetailsActivity extends AppCompatActivity {
 
     private MarchDetailsViewModel mViewModel;
+    private ExtendedFloatingActionButton mExtFab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +34,7 @@ public class MarchDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_march_details);
 
         mViewModel = new ViewModelProvider(this).get(MarchDetailsViewModel.class);
-        ExtendedFloatingActionButton extFab = findViewById(R.id.attend_fab);
+        mExtFab = findViewById(R.id.attend_fab);
         final List<String> attendees;
         User currentUser = new User();
         FirebaseAuth auth = FirebaseAuth.getInstance();
@@ -43,21 +43,32 @@ public class MarchDetailsActivity extends AppCompatActivity {
         currentUser.setProfilePhotoUrl(auth.getCurrentUser().getPhotoUrl().toString());
         currentUser.setName(auth.getCurrentUser().getDisplayName());
 
+        setFabStatus();
+
         Intent intent = getIntent();
         if (intent != null) {
             populateLayout((March) intent.getSerializableExtra(HOME_FRAGMENT_TO_DETAIL_ACTIVITY_INTENT));
             March march = (March) intent.getSerializableExtra(HOME_FRAGMENT_TO_DETAIL_ACTIVITY_INTENT);
             attendees = march.getAttendees();
-            extFab.setOnClickListener(view -> {
-                attendees.add(currentUser.getUserId());
-                reference.child(march.getMarchId()).child("attendees").setValue(attendees);
+            mExtFab.setOnClickListener(view -> {
+                mViewModel.getIsAttending().observe(this, isAttending -> {
+                    if (!isAttending) {
+                        attendees.add(currentUser.getUserId());
+                        reference.child(march.getMarchId()).child(ATTENDEES_DATABASE_REFERENCE).setValue(attendees);
+                        mViewModel.setIsAttending(true);
+                    } else { // User no longer wants to attend
+                        attendees.remove(currentUser.getUserId());
+                        reference.child(march.getMarchId()).child(ATTENDEES_DATABASE_REFERENCE).setValue(attendees);
+                        mViewModel.setIsAttending(false);
+                    }
+                });
             });
 
             if (attendees != null) {
                 if (attendees.contains(currentUser.getUserId())) { // User is already attending
-                    extFab.setText("Attending");
+                    mViewModel.setIsAttending(true);
                 } else { // User isn't attending
-
+                    mViewModel.setIsAttending(false);
                 }
             }
         } else {
@@ -91,5 +102,17 @@ public class MarchDetailsActivity extends AppCompatActivity {
                 .placeholder(R.drawable.loading_animation)
                 .error(R.drawable.ic_broken_image_24dp)
                 .into(image);
+    }
+
+    private void setFabStatus() {
+        mViewModel.getIsAttending().observe(this, isAttending -> {
+            if (isAttending) {
+                mExtFab.setText("Attending");
+                mExtFab.setBackgroundColor(getResources().getColor(R.color.colorFabAttending));
+            } else {
+                mExtFab.setText("Attend");
+                mExtFab.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+            }
+        });
     }
 }

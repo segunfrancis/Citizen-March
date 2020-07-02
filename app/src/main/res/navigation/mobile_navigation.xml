@@ -13,15 +13,15 @@
 
     <fragment
         android:id="@+id/nav_settings"
-        android:name="com.project.segunfrancis.citizenmarch.ui.gallery.GalleryFragment"
+        android:name="com.project.segunfrancis.citizenmarch.ui.settings.SettingsFragment"
         android:label="@string/menu_settings"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_settings" />
 
     <fragment
-        android:id="@+id/nav_sign_out"
-        android:name="com.project.segunfrancis.citizenmarch.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_sign_out"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_about"
+        android:name="com.project.segunfrancis.citizenmarch.ui.about.AboutFragment"
+        android:label="@string/menu_about"
+        tools:layout="@layout/fragment_about" />
 
     <fragment
         android:id="@+id/nav_create_march"

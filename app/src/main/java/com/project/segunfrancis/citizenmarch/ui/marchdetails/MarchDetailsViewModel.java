@@ -3,9 +3,6 @@ package com.project.segunfrancis.citizenmarch.ui.marchdetails;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.project.segunfrancis.citizenmarch.pojo.March;
-import com.project.segunfrancis.citizenmarch.pojo.User;
-
-import java.util.List;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -17,18 +14,22 @@ import static com.project.segunfrancis.citizenmarch.utility.AppConstants.MARCHES
  * Created by SegunFrancis
  */
 public class MarchDetailsViewModel extends ViewModel {
-    DatabaseReference mReference;
     private MutableLiveData<March> march = new MutableLiveData<>();
+    private MutableLiveData<Boolean> _isAttending = new MutableLiveData<>();
 
     public MarchDetailsViewModel() {
-        mReference = FirebaseDatabase.getInstance().getReference(MARCHES_DATABASE_REFERENCE);
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference(MARCHES_DATABASE_REFERENCE);
     }
 
     public void setMarch(March march) {
         this.march.setValue(march);
     }
 
-    void attend() {
+    LiveData<Boolean> getIsAttending() {
+        return _isAttending;
+    }
 
+    void setIsAttending(boolean isAttending) {
+        _isAttending.setValue(isAttending);
     }
 }

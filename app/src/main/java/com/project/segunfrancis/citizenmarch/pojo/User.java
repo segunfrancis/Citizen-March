@@ -10,6 +10,7 @@ public class User implements Serializable {
     private String userId;
     private String name;
     private String profilePhotoUrl;
+    private String email;
     private List<String> attending;
 
     public String getUserId() {
@@ -34,6 +35,14 @@ public class User implements Serializable {
 
     public void setProfilePhotoUrl(String profilePhotoUrl) {
         this.profilePhotoUrl = profilePhotoUrl;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public List<String> getAttending() {

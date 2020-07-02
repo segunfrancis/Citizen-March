@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <PreferenceCategory
+        app:key="about_category"
+        app:title="About">
+        <Preference
+            app:icon="@drawable/ic_about"
+            app:key="about_app"
+            app:summary="Information about this app"
+            app:fragment="com.project.segunfrancis.citizenmarch.ui.about.AboutFragment"
+            app:title="About App" />
+        <Preference
+            app:icon="@drawable/ic_about"
+            app:key="about_developer"
+            app:summary="Information about the app developer"
+            app:fragment="com.project.segunfrancis.citizenmarch.ui.about.AboutFragment"
+            app:title="About Developer" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:key="account_category"
+        app:title="Account">
+        <Preference
+            app:icon="@drawable/ic_menu_sign_out"
+            app:key="sign_out"
+            app:summary="Sign out of this app"
+            app:title="Sign Out" />
+    </PreferenceCategory>
+</PreferenceScreen>

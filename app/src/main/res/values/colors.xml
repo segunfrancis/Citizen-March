@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
 
-    <color name="colorPrimaryDetailText">#000619</color>
-    <color name="colorSecondaryDetailText">#000A2C</color>
+    <color name="colorPrimaryDetailText">#00155C</color>
+    <color name="colorSecondaryDetailText">#001D7E</color>
+    <color name="colorFabAttending">#1A7714</color>
 </resources>
