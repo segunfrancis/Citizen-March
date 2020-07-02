@@ -20,8 +20,18 @@ public class MyPreferenceFragment extends PreferenceFragmentCompat {
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         setPreferencesFromResource(R.xml.preference, rootKey);
         Preference signOutPref = findPreference("sign_out");
+        Preference aboutAppPref = findPreference("about_app");
+        Preference aboutDevPref = findPreference("about_developer");
         signOutPref.setOnPreferenceClickListener(preference -> {
-            displayDialog();
+            displaySignOutDialog();
+            return false;
+        });
+        aboutAppPref.setOnPreferenceClickListener(preference -> {
+            displayAboutDialog(getResources().getString(R.string.about_app), getResources().getString(R.string.about_app_message));
+            return false;
+        });
+        aboutDevPref.setOnPreferenceClickListener(preference -> {
+            displayAboutDialog(getResources().getString(R.string.about_developer), getResources().getString(R.string.about_developer_message));
             return false;
         });
     }
@@ -33,15 +43,24 @@ public class MyPreferenceFragment extends PreferenceFragmentCompat {
         requireActivity().finish();
     }
 
-    private void displayDialog() {
+    private void displaySignOutDialog() {
         new MaterialAlertDialogBuilder(requireContext())
-                .setTitle("Sign Out")
-                .setMessage("Do you want to sign out?")
-                .setPositiveButton("YES", (dialogInterface, i) -> {
+                .setTitle(getResources().getString(R.string.menu_sign_out))
+                .setMessage(getResources().getString(R.string.sign_out_message))
+                .setPositiveButton(getResources().getString(R.string.positive_dialog_title), (dialogInterface, i) -> {
                     dialogInterface.dismiss();
                     signOut();
                 })
-                .setNegativeButton("NO", (dialogInterface, i) -> dialogInterface.dismiss())
+                .setNegativeButton(getResources().getString(R.string.negative_dialog_title), (dialogInterface, i) -> dialogInterface.dismiss())
+                .create()
+                .show();
+    }
+
+    private void displayAboutDialog(String title, String message) {
+        new MaterialAlertDialogBuilder(requireContext())
+                .setTitle(title)
+                .setMessage(message)
+                .setNeutralButton(getResources().getString(R.string.neutral_dialog_title), ((dialogInterface, i) -> dialogInterface.dismiss()))
                 .create()
                 .show();
     }

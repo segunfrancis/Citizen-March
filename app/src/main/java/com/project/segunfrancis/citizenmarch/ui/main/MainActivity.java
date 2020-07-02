@@ -1,7 +1,6 @@
 package com.project.segunfrancis.citizenmarch.ui.main;
 
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
 
@@ -24,7 +23,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
-    private MainViewModel mViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        mViewModel = new ViewModelProvider(this).get(MainViewModel.class);
+        MainViewModel viewModel = new ViewModelProvider(this).get(MainViewModel.class);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
 
@@ -70,21 +68,14 @@ public class MainActivity extends AppCompatActivity {
         CircleImageView imageView = header.findViewById(R.id.profile_imageView);
         TextView name = header.findViewById(R.id.profile_name);
         TextView email = header.findViewById(R.id.profile_email);
-        mViewModel.name().observe(this, name::setText);
-        mViewModel.email().observe(this, email::setText);
-        mViewModel.profilePhotoUrl().observe(this, s ->
+        viewModel.name().observe(this, name::setText);
+        viewModel.email().observe(this, email::setText);
+        viewModel.profilePhotoUrl().observe(this, s ->
                 Glide.with(getApplicationContext())
                         .load(s)
                         .placeholder(R.drawable.default_profile_image)
                         .error(R.drawable.default_profile_image)
                         .into(imageView));
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
     }
 
     @Override
