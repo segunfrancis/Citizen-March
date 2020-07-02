@@ -15,6 +15,9 @@
     <string name="add_photo_image">click on image to add a photo</string>
     <string name="march_photo">photo of the march</string>
 
+    <string name="attend">Attend</string>
+    <string name="attending">Attending</string>
+
     <!-- Preferences -->
     <string name="about_app">About App</string>
     <string name="about_developer">About Developer</string>

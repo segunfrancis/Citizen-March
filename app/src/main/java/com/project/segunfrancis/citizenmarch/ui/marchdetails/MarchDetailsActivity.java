@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,17 +24,21 @@ import java.util.List;
 import static com.project.segunfrancis.citizenmarch.utility.AppConstants.ATTENDEES_DATABASE_REFERENCE;
 import static com.project.segunfrancis.citizenmarch.utility.AppConstants.HOME_FRAGMENT_TO_DETAIL_ACTIVITY_INTENT;
 import static com.project.segunfrancis.citizenmarch.utility.AppConstants.MARCHES_DATABASE_REFERENCE;
+import static com.project.segunfrancis.citizenmarch.utility.AppConstants.SHARED_PREF_KEY;
 
 public class MarchDetailsActivity extends AppCompatActivity {
 
     private MarchDetailsViewModel mViewModel;
     private ExtendedFloatingActionButton mExtFab;
+    private SharedPreferences mPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_march_details);
 
+        mPreferences = getSharedPreferences(SHARED_PREF_KEY, MODE_PRIVATE);
+        SharedPreferences.Editor editor = mPreferences.edit();
         mViewModel = new ViewModelProvider(this).get(MarchDetailsViewModel.class);
         mExtFab = findViewById(R.id.attend_fab);
         final List<String> attendees;
@@ -43,34 +49,29 @@ public class MarchDetailsActivity extends AppCompatActivity {
         currentUser.setProfilePhotoUrl(auth.getCurrentUser().getPhotoUrl().toString());
         currentUser.setName(auth.getCurrentUser().getDisplayName());
 
-        setFabStatus();
-
         Intent intent = getIntent();
         if (intent != null) {
             populateLayout((March) intent.getSerializableExtra(HOME_FRAGMENT_TO_DETAIL_ACTIVITY_INTENT));
             March march = (March) intent.getSerializableExtra(HOME_FRAGMENT_TO_DETAIL_ACTIVITY_INTENT);
             attendees = march.getAttendees();
+            setFabStatus(march);
             mExtFab.setOnClickListener(view -> {
-                mViewModel.getIsAttending().observe(this, isAttending -> {
-                    if (!isAttending) {
-                        attendees.add(currentUser.getUserId());
-                        reference.child(march.getMarchId()).child(ATTENDEES_DATABASE_REFERENCE).setValue(attendees);
-                        mViewModel.setIsAttending(true);
-                    } else { // User no longer wants to attend
-                        attendees.remove(currentUser.getUserId());
-                        reference.child(march.getMarchId()).child(ATTENDEES_DATABASE_REFERENCE).setValue(attendees);
-                        mViewModel.setIsAttending(false);
-                    }
-                });
-            });
-
-            if (attendees != null) {
-                if (attendees.contains(currentUser.getUserId())) { // User is already attending
-                    mViewModel.setIsAttending(true);
-                } else { // User isn't attending
-                    mViewModel.setIsAttending(false);
+                if (attendees.contains(currentUser.getUserId())) {
+                    attendees.remove(currentUser.getUserId());
+                    reference.child(march.getMarchId()).child(ATTENDEES_DATABASE_REFERENCE).setValue(attendees);
+                    mExtFab.setText(getResources().getString(R.string.attend));
+                    mExtFab.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                    editor.putBoolean(march.getMarchId(), false);
+                    editor.apply();
+                } else {
+                    attendees.add(currentUser.getUserId());
+                    reference.child(march.getMarchId()).child(ATTENDEES_DATABASE_REFERENCE).setValue(attendees);
+                    mExtFab.setText(getResources().getString(R.string.attending));
+                    mExtFab.setBackgroundColor(getResources().getColor(R.color.colorFabAttending));
+                    editor.putBoolean(march.getMarchId(), true);
+                    editor.apply();
                 }
-            }
+            });
         } else {
             finish();
         }
@@ -104,15 +105,15 @@ public class MarchDetailsActivity extends AppCompatActivity {
                 .into(image);
     }
 
-    private void setFabStatus() {
-        mViewModel.getIsAttending().observe(this, isAttending -> {
-            if (isAttending) {
-                mExtFab.setText("Attending");
-                mExtFab.setBackgroundColor(getResources().getColor(R.color.colorFabAttending));
-            } else {
-                mExtFab.setText("Attend");
-                mExtFab.setBackgroundColor(getResources().getColor(R.color.colorAccent));
-            }
-        });
+    private void setFabStatus(March march) {
+        if (mPreferences.getBoolean(march.getMarchId(), false)) {
+            mExtFab.setText(getResources().getString(R.string.attending));
+            mExtFab.setBackgroundColor(getResources().getColor(R.color.colorFabAttending));
+            Log.d("FabStatus", "Attending");
+        } else {
+            mExtFab.setText(getResources().getString(R.string.attend));
+            mExtFab.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+            Log.d("FabStatus", "Not Attending");
+        }
     }
 }
