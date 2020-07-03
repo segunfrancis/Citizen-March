@@ -22,6 +22,7 @@ import android.widget.TextView;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
+import com.project.segunfrancis.citizenmarch.R;
 import com.project.segunfrancis.citizenmarch.databinding.FragmentCreateMarchBinding;
 import com.project.segunfrancis.citizenmarch.pojo.March;
 import com.project.segunfrancis.citizenmarch.utility.States;
@@ -88,12 +89,13 @@ public class CreateMarchFragment extends Fragment {
         mViewModel.createMarchProgress().observe(getViewLifecycleOwner(), states -> {
             switch (states) {
                 case SUCCESS: {
-                    //Navigation.findNavController(requireActivity(), R.id.nav)
+                    Navigation.findNavController(requireActivity(), R.id.nav_host_fragment);
                 }
                 case LOADING: {
                     mBinding.buttonCreateMarch.setEnabled(false);
                 }
                 case ERROR: {
+                    displaySnackBar("Something went wrong");
                 }
             }
         });

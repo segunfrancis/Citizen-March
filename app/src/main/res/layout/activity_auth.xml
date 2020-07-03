@@ -18,7 +18,26 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
-    
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#AA111111"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:layout_width="@dimen/image_title_size"
+        android:layout_height="@dimen/image_title_size"
+        android:layout_marginTop="@dimen/text_input_horizontal_margin"
+        android:contentDescription="@string/title_image"
+        android:src="@drawable/title_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ProgressBar
         android:id="@+id/auth_progress_bar"
         android:layout_width="@dimen/progress_bar_size"

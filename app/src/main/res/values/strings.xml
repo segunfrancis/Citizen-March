@@ -33,7 +33,6 @@
     <string name="negative_dialog_title">NO</string>
     <string name="neutral_dialog_title">DISMISS</string>
 
-
     <string name="march_title">Title</string>
     <string name="march_description">Description</string>
     <string name="march_hashtags">HashTags</string>
@@ -54,4 +53,6 @@
     <bool name="isTablet">false</bool>
 
     <string name="image_reference">"https://unsplash.com/@libraryofcongress"</string>
+    <string name="clenched_fist">"https://icons8.com/icons/set/clenched-fist"></string>
+    <string name="title_image">image of app name</string>
 </resources>
