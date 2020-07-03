@@ -16,7 +16,6 @@
     <string name="march_photo">photo of the march</string>
 
     <string name="attend">Attend</string>
-    <string name="attending">Attending</string>
 
     <!-- Preferences -->
     <string name="about_app">About App</string>
@@ -33,6 +32,24 @@
     <string name="positive_dialog_title">YES</string>
     <string name="negative_dialog_title">NO</string>
     <string name="neutral_dialog_title">DISMISS</string>
+
+
+    <string name="march_title">Title</string>
+    <string name="march_description">Description</string>
+    <string name="march_hashtags">HashTags</string>
+    <string name="march_location">Location</string>
+    <string name="march_time">Time:</string>
+    <string name="march_date">Date:</string>
+    <string name="create_march_button_text">Create</string>
+    <string name="march_image">March image</string>
+    <string name="attending">Attending</string>
+    <string name="created_by">Created by</string>
+    <string name="hashtags">Hashtags</string>
+    <string name="location">Location</string>
+    <string name="description">Description</string>
+    <string name="title">Title</string>
+    <string name="profile_photo">Profile photo from google account</string>
+    <string name="location_icon">Location icon</string>
 
     <bool name="isTablet">false</bool>
 </resources>

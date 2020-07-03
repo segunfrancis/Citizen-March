@@ -1,63 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.settings.SettingsFragment">
+        android:fillViewport="true">
 
-        <TextView
-            android:id="@+id/settings_name_text"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:textAlignment="center"
-            android:textSize="20sp"
-            android:text="@{user.name}"
-            app:layout_constraintBottom_toTopOf="@+id/settings_email_text"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/settings_profile_image"
-            tools:text="John Doe" />
+            tools:context=".ui.settings.SettingsFragment">
 
-        <TextView
-            android:id="@+id/settings_email_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:text="@{user.email}"
-            app:layout_constraintBottom_toTopOf="@+id/preference_fragment"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/settings_name_text"
-            tools:text="john.doe@gmail.com" />
+            <TextView
+                android:id="@+id/settings_name_text"
+                style="@style/PrimaryDetailText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/text_input_vertical_margin"
+                android:text="@{user.name}"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toTopOf="@+id/settings_email_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/settings_profile_image"
+                tools:text="John Doe" />
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/settings_profile_image"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            app:loadImage="@{user.profilePhotoUrl}"
-            app:layout_constraintBottom_toTopOf="@+id/settings_name_text"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="spread_inside"
-            tools:src="@drawable/placeholder_image" />
+            <TextView
+                android:id="@+id/settings_email_text"
+                style="@style/SecondaryDetailText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{user.email}"
+                app:layout_constraintBottom_toTopOf="@+id/preference_fragment"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/settings_name_text"
+                tools:text="john.doe@gmail.com" />
 
-        <fragment
-            android:id="@+id/preference_fragment"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:name="com.project.segunfrancis.citizenmarch.ui.settings.MyPreferenceFragment"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/settings_email_text" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/settings_profile_image"
+                android:layout_width="@dimen/profile_photo_size"
+                android:layout_height="@dimen/profile_photo_size"
+                android:layout_marginTop="@dimen/text_input_horizontal_margin"
+                android:layout_marginBottom="@dimen/text_input_horizontal_margin"
+                android:contentDescription="@string/profile_photo"
+                app:layout_constraintBottom_toTopOf="@+id/settings_name_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="spread_inside"
+                app:loadImage="@{user.profilePhotoUrl}"
+                tools:src="@drawable/placeholder_image" />
+
+            <fragment
+                android:id="@+id/preference_fragment"
+                android:name="com.project.segunfrancis.citizenmarch.ui.settings.MyPreferenceFragment"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/settings_email_text" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 
     <data>
 

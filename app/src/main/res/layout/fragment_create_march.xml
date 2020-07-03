@@ -1,178 +1,180 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/create_march_scrollView"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.createMarch.CreateMarchFragment">
 
-    <LinearLayout
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/create_march_scrollView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <FrameLayout
-            android:id="@+id/frameLayout"
-            android:layout_width="match_parent"
-            android:layout_height="350dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:id="@+id/add_image"
-                android:layout_width="72dp"
-                android:layout_height="72dp"
-                android:layout_gravity="center"
-                android:background="?attr/selectableItemBackground"
-                android:contentDescription="@string/add_photo_image"
-                android:src="@drawable/ic_add_photos" />
-
-            <ImageView
-                android:id="@+id/march_image"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:adjustViewBounds="true"
-                android:contentDescription="@string/march_photo"
-                android:scaleType="centerCrop"
-                tools:src="@drawable/placeholder_image"/>
-        </FrameLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:hint="Title">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/march_title_ET"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textCapWords" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout2"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:hint="Description">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/march_description_ET"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textCapSentences|textMultiLine" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout4"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:hint="HashTags">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/march_hashtag_ET"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout3"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:hint="Location">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/march_location_ET"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text|textCapSentences" />
-        </com.google.android.material.textfield.TextInputLayout>
+        android:layout_height="match_parent"
+        tools:context=".ui.createMarch.CreateMarchFragment">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:baselineAligned="false"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/time_linearLayout"
-                android:layout_width="0dp"
+            <FrameLayout
+                android:id="@+id/frameLayout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/march_image_height"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/add_image"
+                    android:layout_width="@dimen/add_image_size"
+                    android:layout_height="@dimen/add_image_size"
+                    android:layout_gravity="center"
+                    android:background="?attr/selectableItemBackground"
+                    android:contentDescription="@string/add_photo_image"
+                    android:src="@drawable/ic_add_photos" />
+
+                <ImageView
+                    android:id="@+id/march_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/march_photo"
+                    android:scaleType="centerCrop"
+                    tools:src="@drawable/placeholder_image" />
+            </FrameLayout>
+
+            <com.project.segunfrancis.citizenmarch.utility.MaxWidthLinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_weight="1"
-                android:background="?attr/selectableItemBackground"
-                android:orientation="horizontal"
-                android:padding="16dp">
+                android:elevation="2dp"
+                android:layout_gravity="center"
+                android:maxWidth="@dimen/detail_card_max_width"
+                android:orientation="vertical">
 
-                <TextView
-                    style="@style/TextAppearance.AppCompat.Medium"
-                    android:layout_width="wrap_content"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayout"
+                    style="@style/TextInputLayoutStyle"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Time: " />
+                    android:hint="@string/march_title">
 
-                <TextView
-                    android:id="@+id/march_time"
-                    style="@style/TextAppearance.AppCompat.Medium"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/march_title_ET"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/text_input_text_size"
+                        android:inputType="textCapWords" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-            <LinearLayout
-                android:id="@+id/date_linearLayout"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:layout_weight="1"
-                android:background="?attr/selectableItemBackground"
-                android:orientation="horizontal"
-                android:padding="16dp">
-
-                <TextView
-                    style="@style/TextAppearance.AppCompat.Medium"
-                    android:layout_width="wrap_content"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayout2"
+                    style="@style/TextInputLayoutStyle"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Date: " />
+                    android:hint="@string/march_description">
 
-                <TextView
-                    android:id="@+id/march_date"
-                    style="@style/TextAppearance.AppCompat.Medium"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/march_description_ET"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/text_input_text_size"
+                        android:inputType="textCapSentences|textMultiLine" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayout4"
+                    style="@style/TextInputLayoutStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/march_hashtags">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/march_hashtag_ET"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/text_input_text_size"
+                        android:inputType="text" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayout3"
+                    style="@style/TextInputLayoutStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/march_location">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/march_location_ET"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/text_input_text_size"
+                        android:inputType="text|textCapSentences" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:baselineAligned="false"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/time_linearLayout"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/text_input_horizontal_margin"
+                        android:layout_marginTop="@dimen/text_input_vertical_margin"
+                        android:layout_weight="1"
+                        android:background="?attr/selectableItemBackground"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/text_input_horizontal_margin">
+
+                        <TextView
+                            style="@style/TextAppearance.AppCompat.Medium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/text_input_text_size"
+                            android:text="@string/march_time" />
+
+                        <TextView
+                            android:id="@+id/march_time"
+                            style="@style/TextAppearance.AppCompat.Medium"
+                            android:textSize="@dimen/text_input_text_size"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/date_linearLayout"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/text_input_vertical_margin"
+                        android:layout_marginEnd="@dimen/text_input_horizontal_margin"
+                        android:layout_weight="1"
+                        android:background="?attr/selectableItemBackground"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/text_input_horizontal_margin">
+
+                        <TextView
+                            style="@style/TextAppearance.AppCompat.Medium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/text_input_text_size"
+                            android:text="@string/march_date" />
+
+                        <TextView
+                            android:id="@+id/march_date"
+                            style="@style/TextAppearance.AppCompat.Medium"
+                            android:textSize="@dimen/text_input_text_size"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    style="@style/ButtonStyle"
+                    android:id="@+id/button_create_march"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/create_march_button_text" />
+            </com.project.segunfrancis.citizenmarch.utility.MaxWidthLinearLayout>
         </LinearLayout>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/button_create_march"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            android:padding="16dp"
-            android:text="Create" />
-    </LinearLayout>
-</ScrollView>
+    </ScrollView>
 </layout>

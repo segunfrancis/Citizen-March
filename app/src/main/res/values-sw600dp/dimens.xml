@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="text_input_horizontal_margin">32dp</dimen>
+    <dimen name="text_input_vertical_margin">16dp</dimen>
+    <dimen name="button_text_size">18sp</dimen>
+    <dimen name="text_input_text_size">22sp</dimen>
+    <dimen name="detail_body_line_spacing_multiplier" format="float" type="fraction">1.25</dimen>
+    <dimen name="march_image_height">450dp</dimen>
+    <dimen name="add_image_size">144dp</dimen>
+    <dimen name="profile_photo_size">160dp</dimen>
+</resources>

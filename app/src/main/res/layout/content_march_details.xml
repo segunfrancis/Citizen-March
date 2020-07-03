@@ -8,9 +8,10 @@
     <ImageView
         android:id="@+id/march_detail_imageView"
         android:layout_width="0dp"
-        android:layout_height="300dp"
+        android:layout_height="@dimen/march_image_height"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
+        android:contentDescription="@string/march_image"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -37,21 +38,24 @@
                 <TextView
                     android:id="@+id/empty_textView"
                     android:layout_width="match_parent"
-                    android:layout_height="300dp" />
+                    android:layout_height="@dimen/march_image_height" />
             </LinearLayout>
 
-            <LinearLayout
+            <com.project.segunfrancis.citizenmarch.utility.MaxWidthLinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/white"
-                android:elevation="4dp"
+                android:elevation="2dp"
+                android:maxWidth="@dimen/detail_card_max_width"
+                android:padding="@dimen/text_input_horizontal_margin"
+                android:layout_gravity="center"
                 android:orientation="vertical">
 
                 <TextView
                     style="@style/PrimaryDetailText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Title" />
+                    android:text="@string/title" />
 
                 <TextView
                     android:id="@+id/march_detail_title_TV"
@@ -64,7 +68,7 @@
                     style="@style/PrimaryDetailText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Description" />
+                    android:text="@string/description" />
 
                 <TextView
                     android:id="@+id/march_detail_description_TV"
@@ -77,7 +81,7 @@
                     style="@style/PrimaryDetailText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Location" />
+                    android:text="@string/location" />
 
                 <TextView
                     android:id="@+id/march_detail_location_TV"
@@ -90,7 +94,7 @@
                     style="@style/PrimaryDetailText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Hashtags" />
+                    android:text="@string/hashtags" />
 
                 <TextView
                     android:id="@+id/march_detail_hashtag_TV"
@@ -103,7 +107,7 @@
                     style="@style/PrimaryDetailText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Created by:" />
+                    android:text="@string/created_by" />
 
                 <TextView
                     android:id="@+id/march_detail_created_by_TV"
@@ -115,7 +119,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="@dimen/text_input_horizontal_margin">
                     <TextView
                         android:id="@+id/march_detail_time_TV"
                         style="@style/PrimaryDetailText"
@@ -137,11 +142,19 @@
                         tools:text="12th December"/>
                 </LinearLayout>
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/attendee_rcyclerView"
+                <TextView
+                    style="@style/PrimaryDetailText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/attending" />
+
+                <TextView
+                    android:id="@+id/march_detail_attending"
+                    style="@style/SecondaryDetailText"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
+                    android:layout_height="wrap_content"
+                    tools:text="Quisque malesuada"/>
+            </com.project.segunfrancis.citizenmarch.utility.MaxWidthLinearLayout>
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

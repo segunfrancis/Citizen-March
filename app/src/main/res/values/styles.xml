@@ -20,12 +20,29 @@
 
     <!-- Text Styles -->
     <style name="PrimaryDetailText" parent="TextAppearance.AppCompat.Medium">
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">@dimen/text_input_text_size</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textColor">@color/colorPrimaryDetailText</item>
     </style>
     <style name="SecondaryDetailText" parent="TextAppearance.AppCompat.Medium">
-        <item name="android:textColor">@color/colorSecondaryDetailText</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">@dimen/text_input_text_size</item>
+        <item name="android:layout_marginBottom">@dimen/text_input_horizontal_margin</item>
+        <item name="android:lineSpacingMultiplier">@dimen/detail_body_line_spacing_multiplier</item>
+    </style>
+
+    <!-- TextInputLayout Styles -->
+    <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
+        <item name="android:layout_marginStart">@dimen/text_input_horizontal_margin</item>
+        <item name="android:layout_marginEnd">@dimen/text_input_horizontal_margin</item>
+        <item name="android:layout_marginTop">@dimen/text_input_vertical_margin</item>
+    </style>
+
+    <!-- Button Styles -->
+    <style name="ButtonStyle" parent="Widget.MaterialComponents.Button">
+        <item name="android:layout_marginTop">@dimen/text_input_vertical_margin</item>
+        <item name="android:layout_marginStart">@dimen/text_input_horizontal_margin</item>
+        <item name="android:layout_marginEnd">@dimen/text_input_horizontal_margin</item>
+        <item name="android:layout_marginBottom">@dimen/text_input_vertical_margin</item>
+        <item name="android:padding">@dimen/text_input_horizontal_margin</item>
+        <item name="android:textSize">@dimen/button_text_size</item>
     </style>
 </resources>
