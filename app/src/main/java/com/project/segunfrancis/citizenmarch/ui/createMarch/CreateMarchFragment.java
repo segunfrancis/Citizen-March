@@ -25,7 +25,8 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.project.segunfrancis.citizenmarch.R;
 import com.project.segunfrancis.citizenmarch.databinding.FragmentCreateMarchBinding;
 import com.project.segunfrancis.citizenmarch.pojo.March;
-import com.project.segunfrancis.citizenmarch.utility.States;
+
+import java.util.TimeZone;
 
 import static android.app.Activity.RESULT_OK;
 import static com.project.segunfrancis.citizenmarch.utility.AppConstants.MARCH_IMAGE_REQUEST_CODE;
@@ -122,7 +123,9 @@ public class CreateMarchFragment extends Fragment {
                     minute_string = Integer.toString(minute);
                     timeMessage = hour_string + ":" + minute_string + " am";
                 }
-                mBinding.marchTime.setText(timeMessage);
+                TimeZone tz = TimeZone.getDefault();
+                String timeZone = tz.getDisplayName(false, TimeZone.SHORT);
+                mBinding.marchTime.setText(timeMessage + " " + timeZone);
             });
             fragment.show(getChildFragmentManager(), "timePicker");
         });

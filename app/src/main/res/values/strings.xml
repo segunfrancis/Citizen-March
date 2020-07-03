@@ -55,4 +55,6 @@
     <string name="image_reference">"https://unsplash.com/@libraryofcongress"</string>
     <string name="clenched_fist">"https://icons8.com/icons/set/clenched-fist"></string>
     <string name="title_image">image of app name</string>
+    <string name="exit_dialog_message">Are you sure you want to exit?</string>
+    <string name="exit_dialog_title">Exit!</string>
 </resources>
