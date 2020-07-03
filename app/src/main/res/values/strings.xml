@@ -52,4 +52,6 @@
     <string name="location_icon">Location icon</string>
 
     <bool name="isTablet">false</bool>
+
+    <string name="image_reference">"https://unsplash.com/@libraryofcongress"</string>
 </resources>

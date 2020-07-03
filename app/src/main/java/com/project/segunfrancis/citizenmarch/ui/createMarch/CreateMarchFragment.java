@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import android.provider.MediaStore;
 import android.util.Log;
@@ -87,8 +88,10 @@ public class CreateMarchFragment extends Fragment {
         mViewModel.createMarchProgress().observe(getViewLifecycleOwner(), states -> {
             switch (states) {
                 case SUCCESS: {
+                    //Navigation.findNavController(requireActivity(), R.id.nav)
                 }
                 case LOADING: {
+                    mBinding.buttonCreateMarch.setEnabled(false);
                 }
                 case ERROR: {
                 }

@@ -1,9 +1,12 @@
 package com.project.segunfrancis.citizenmarch.ui.home;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,8 +42,13 @@ public class HomeFragment extends Fragment implements MarchRecyclerAdapter.OnIte
         super.onViewCreated(view, savedInstanceState);
         RecyclerView recyclerView = view.findViewById(R.id.marches_recyclerView);
         ProgressBar progressBar = view.findViewById(R.id.progress_bar);
+        int orientation = getResources().getConfiguration().orientation;
         if (getResources().getBoolean(R.bool.isTablet)) {
-            recyclerView.setLayoutManager(new StaggeredGridLayoutManager(calculateNoOfColumns(requireContext()), RecyclerView.VERTICAL));
+            if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                recyclerView.setLayoutManager(new StaggeredGridLayoutManager(3, RecyclerView.VERTICAL));
+            } else {
+                recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, RecyclerView.VERTICAL));
+            }
         } else {
             recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
             recyclerView.addItemDecoration(new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL));
