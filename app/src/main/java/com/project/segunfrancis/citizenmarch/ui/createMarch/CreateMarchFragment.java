@@ -89,13 +89,13 @@ public class CreateMarchFragment extends Fragment {
         mViewModel.createMarchProgress().observe(getViewLifecycleOwner(), states -> {
             switch (states) {
                 case SUCCESS: {
-                    Navigation.findNavController(requireActivity(), R.id.nav_host_fragment);
+                    Navigation.findNavController(requireActivity(), R.id.nav_host_fragment).navigate(R.id.action_nav_create_march_to_nav_home);
                 }
                 case LOADING: {
                     mBinding.buttonCreateMarch.setEnabled(false);
+                    hideSoftKeyboard(requireActivity());
                 }
                 case ERROR: {
-                    displaySnackBar("Something went wrong");
                 }
             }
         });

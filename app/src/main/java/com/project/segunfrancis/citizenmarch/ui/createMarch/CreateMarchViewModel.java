@@ -63,6 +63,7 @@ public class CreateMarchViewModel extends ViewModel {
 
     void uploadImageToFirebaseStorage(Bitmap bitmap, String imagePath, March march) {
         _createMarchMessage.setValue("Creating March...");
+        _createMarchProgress.setValue(States.LOADING);
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 60, outputStream);
         byte[] data = outputStream.toByteArray();

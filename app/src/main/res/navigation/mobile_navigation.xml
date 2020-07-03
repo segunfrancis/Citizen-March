@@ -18,14 +18,14 @@
         tools:layout="@layout/fragment_settings" />
 
     <fragment
-        android:id="@+id/nav_about"
-        android:name="com.project.segunfrancis.citizenmarch.ui.about.AboutFragment"
-        android:label="@string/menu_about"
-        tools:layout="@layout/fragment_about" />
-
-    <fragment
         android:id="@+id/nav_create_march"
         android:name="com.project.segunfrancis.citizenmarch.ui.createMarch.CreateMarchFragment"
         android:label="@string/menu_create_march"
-        tools:layout="@layout/fragment_create_march" />
+        tools:layout="@layout/fragment_create_march" >
+        <action
+            android:id="@+id/action_nav_create_march_to_nav_home"
+            app:destination="@id/nav_home"
+            app:popUpTo="@id/nav_home"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>
