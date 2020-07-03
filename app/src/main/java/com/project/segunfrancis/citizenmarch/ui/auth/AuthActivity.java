@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -31,6 +33,7 @@ public class AuthActivity extends AppCompatActivity {
 
     private GoogleApiClient mGoogleApiClient;
     private FirebaseAuth mAuth;
+    private ProgressBar mProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,9 +46,8 @@ public class AuthActivity extends AppCompatActivity {
         }
         setContentView(R.layout.activity_auth);
         MaterialButton signInButton = findViewById(R.id.button_sign_in);
-        signInButton.setOnClickListener(view -> {
-            signIn();
-        });
+        mProgressBar = findViewById(R.id.auth_progress_bar);
+        signInButton.setOnClickListener(view -> signIn());
 
         GoogleSignInOptions signInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -66,6 +68,7 @@ public class AuthActivity extends AppCompatActivity {
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 firebaseAuthWithGoogle(account);
             } catch (ApiException e) {
+                hideProgressBar();
                 displaySnackBar(e.getLocalizedMessage());
             }
         }
@@ -85,17 +88,27 @@ public class AuthActivity extends AppCompatActivity {
                 reference.child(userId).setValue(user);
                 finish();
             } else {
+                hideProgressBar();
                 displaySnackBar(task.getException().getLocalizedMessage());
             }
         });
     }
 
     private void signIn() {
+        showProgressBar();
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
     private void displaySnackBar(String message) {
         Snackbar.make(findViewById(R.id.auth_constraintLayout), message, Snackbar.LENGTH_LONG).show();
+    }
+
+    private void hideProgressBar() {
+        mProgressBar.setVisibility(View.GONE);
+    }
+
+    private void showProgressBar() {
+        mProgressBar.setVisibility(View.VISIBLE);
     }
 }

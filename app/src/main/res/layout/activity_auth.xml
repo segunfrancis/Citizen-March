@@ -1,25 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/auth_constraintLayout"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/auth_constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.auth.AuthActivity">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_sign_in"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
-        android:padding="16dp"
-        android:text="Sign In"
-        app:icon="@drawable/googleg_standard_color_18"
-        app:iconTintMode="multiply"
-        app:iconPadding="0dp"
+    <ProgressBar
+        android:id="@+id/auth_progress_bar"
+        android:layout_width="@dimen/progress_bar_size"
+        android:layout_height="@dimen/progress_bar_size"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <com.project.segunfrancis.citizenmarch.utility.MaxWidthLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center|bottom"
+        android:maxWidth="@dimen/detail_card_max_width"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_sign_in"
+            style="@style/ButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/text_input_horizontal_margin"
+            android:layout_marginEnd="@dimen/text_input_horizontal_margin"
+            android:layout_marginBottom="@dimen/text_input_horizontal_margin"
+            android:padding="@dimen/text_input_vertical_margin"
+            android:text="@string/sign_in"
+            android:textSize="@dimen/button_text_size"
+            app:icon="@drawable/googleg_standard_color_18"
+            app:iconPadding="0dp"
+            app:iconTintMode="multiply" />
+    </com.project.segunfrancis.citizenmarch.utility.MaxWidthLinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

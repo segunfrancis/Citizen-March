@@ -77,7 +77,7 @@ public class HomeFragment extends Fragment implements MarchRecyclerAdapter.OnIte
         progressBar.setVisibility(View.VISIBLE);
     }
 
-    public int calculateNoOfColumns(Context context) {
+    private int calculateNoOfColumns(Context context) {
         DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
         float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
         int scalingFactor = 200;
