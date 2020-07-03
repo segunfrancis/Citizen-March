@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModelProvider;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -55,6 +54,14 @@ public class MarchDetailsActivity extends AppCompatActivity {
             March march = (March) intent.getSerializableExtra(HOME_FRAGMENT_TO_DETAIL_ACTIVITY_INTENT);
             attendees = march.getAttendees();
             setFabStatus(march);
+            TextView attending = findViewById(R.id.march_detail_attending);
+            if (attendees.size() == 0) {
+                attending.setText("");
+            } else if (attendees.size() == 1) {
+                attending.setText(attendees.size() + " person");
+            } else {
+                attending.setText(attendees.size() + " people");
+            }
             mExtFab.setOnClickListener(view -> {
                 if (attendees.contains(currentUser.getUserId())) {
                     attendees.remove(currentUser.getUserId());
@@ -109,11 +116,9 @@ public class MarchDetailsActivity extends AppCompatActivity {
         if (mPreferences.getBoolean(march.getMarchId(), false)) {
             mExtFab.setText(getResources().getString(R.string.attending));
             mExtFab.setBackgroundColor(getResources().getColor(R.color.colorFabAttending));
-            Log.d("FabStatus", "Attending");
         } else {
             mExtFab.setText(getResources().getString(R.string.attend));
             mExtFab.setBackgroundColor(getResources().getColor(R.color.colorAccent));
-            Log.d("FabStatus", "Not Attending");
         }
     }
 }

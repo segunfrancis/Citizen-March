@@ -9,4 +9,5 @@
     <dimen name="march_image_height">450dp</dimen>
     <dimen name="add_image_size">144dp</dimen>
     <dimen name="profile_photo_size">160dp</dimen>
+    <dimen name="progress_bar_size">60dp</dimen>
 </resources>
