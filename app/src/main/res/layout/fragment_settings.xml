@@ -45,6 +45,7 @@
                 android:layout_marginTop="@dimen/text_input_horizontal_margin"
                 android:layout_marginBottom="@dimen/text_input_horizontal_margin"
                 android:contentDescription="@string/profile_photo"
+                android:src="@drawable/loading_animation"
                 app:layout_constraintBottom_toTopOf="@+id/settings_name_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
