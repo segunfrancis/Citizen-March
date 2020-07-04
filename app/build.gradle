@@ -4,7 +4,7 @@ apply plugin: 'com.google.gms.google-services'
 android {
     signingConfigs {
         release {
-            storeFile file('C:\\Users\\SegunFrancis\\Desktop\\KS\\keystores\\releaseKey\\CitizenMarchKey.jks')
+            storeFile file('CitizenMarchKey.jks')
             storePassword 'android'
             keyAlias = 'releaseKey'
             keyPassword 'android'
