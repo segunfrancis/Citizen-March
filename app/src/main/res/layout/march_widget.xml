@@ -1,0 +1,47 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/appwidget_linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:padding="@dimen/widget_margin">
+
+    <TextView
+        style="@style/PrimaryWidgetText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/text_input_vertical_margin"
+        android:contentDescription="@string/appwidget_text"
+        android:text="@string/app_name"
+        android:textColor="@color/black"
+        tools:text="@string/appwidget_text" />
+
+    <TextView
+        android:id="@+id/appwidget_text_march_title"
+        style="@style/PrimaryWidgetText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/text_input_vertical_margin"
+        android:contentDescription="@string/appwidget_text"
+        tools:text="@string/appwidget_text" />
+
+    <TextView
+        android:id="@+id/appwidget_text_march_location"
+        style="@style/SecondaryWidgetText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/text_input_vertical_margin"
+        android:contentDescription="@string/appwidget_text"
+        tools:text="@string/appwidget_text" />
+
+    <TextView
+        android:id="@+id/appwidget_text_march_time"
+        style="@style/SecondaryWidgetText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/text_input_vertical_margin"
+        android:contentDescription="@string/appwidget_text"
+        tools:text="@string/appwidget_text" />
+</LinearLayout>

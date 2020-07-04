@@ -1,23 +1,24 @@
 <resources>
+    <bool name="isTablet">false</bool>
     <string name="app_name">Citizen March</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
 
+    <string name="action_settings">Settings</string>
     <string name="menu_home">Home</string>
     <string name="menu_settings">Settings</string>
-    <string name="menu_create_march">Create a March</string>
 
+    <string name="menu_create_march">Create a March</string>
     <string name="sign_in">Sign In</string>
     <string name="add_photo_image">click on image to add a photo</string>
+
     <string name="march_photo">photo of the march</string>
 
-    <string name="attend">Attend</string>
-
     <!-- Preferences -->
+    <string name="attend">Attend</string>
     <string name="about_app">About App</string>
     <string name="about_developer">About Developer</string>
     <string name="about_app_summary">Information about this app</string>
@@ -31,8 +32,8 @@
     <string name="account_category_title">Account</string>
     <string name="positive_dialog_title">YES</string>
     <string name="negative_dialog_title">NO</string>
-    <string name="neutral_dialog_title">DISMISS</string>
 
+    <string name="neutral_dialog_title">DISMISS</string>
     <string name="march_title">Title</string>
     <string name="march_description">Description</string>
     <string name="march_hashtags">HashTags</string>
@@ -48,13 +49,16 @@
     <string name="description">Description</string>
     <string name="title">Title</string>
     <string name="profile_photo">Profile photo from google account</string>
-    <string name="location_icon">Location icon</string>
 
-    <bool name="isTablet">false</bool>
+    <string name="location_icon">Location icon</string>
 
     <string name="image_reference">"https://unsplash.com/@libraryofcongress"</string>
     <string name="clenched_fist">"https://icons8.com/icons/set/clenched-fist"></string>
     <string name="title_image">image of app name</string>
     <string name="exit_dialog_message">Are you sure you want to exit?</string>
     <string name="exit_dialog_title">Exit!</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="add_to_widget">ADD TO WIDGET</string>
+    <string name="empty_march">NO MARCH HAS BEEN ADDED</string>
 </resources>

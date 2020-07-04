@@ -1,11 +1,14 @@
 package com.project.segunfrancis.citizenmarch.ui.marchdetails;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,13 +20,18 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.project.segunfrancis.citizenmarch.R;
 import com.project.segunfrancis.citizenmarch.pojo.March;
 import com.project.segunfrancis.citizenmarch.pojo.User;
+import com.project.segunfrancis.citizenmarch.widget.MarchWidgetProvider;
 
 import java.util.List;
 
 import static com.project.segunfrancis.citizenmarch.utility.AppConstants.ATTENDEES_DATABASE_REFERENCE;
 import static com.project.segunfrancis.citizenmarch.utility.AppConstants.HOME_FRAGMENT_TO_DETAIL_ACTIVITY_INTENT;
 import static com.project.segunfrancis.citizenmarch.utility.AppConstants.MARCHES_DATABASE_REFERENCE;
-import static com.project.segunfrancis.citizenmarch.utility.AppConstants.SHARED_PREF_KEY;
+import static com.project.segunfrancis.citizenmarch.utility.AppConstants.ATTENDING_SHARED_PREF_KEY;
+import static com.project.segunfrancis.citizenmarch.utility.AppConstants.MARCH_TIME_PREF_KEY;
+import static com.project.segunfrancis.citizenmarch.utility.AppConstants.MARCH_TITLE_PREF_KEY;
+import static com.project.segunfrancis.citizenmarch.utility.AppConstants.MARCH_VENUE_PREF_KEY;
+import static com.project.segunfrancis.citizenmarch.utility.AppConstants.WIDGET_SHARED_PREF_KEY;
 
 public class MarchDetailsActivity extends AppCompatActivity {
 
@@ -36,7 +44,7 @@ public class MarchDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_march_details);
 
-        mPreferences = getSharedPreferences(SHARED_PREF_KEY, MODE_PRIVATE);
+        mPreferences = getSharedPreferences(ATTENDING_SHARED_PREF_KEY, MODE_PRIVATE);
         SharedPreferences.Editor editor = mPreferences.edit();
         mViewModel = new ViewModelProvider(this).get(MarchDetailsViewModel.class);
         mExtFab = findViewById(R.id.attend_fab);
@@ -82,6 +90,33 @@ public class MarchDetailsActivity extends AppCompatActivity {
         } else {
             finish();
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.widget_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.action_update_widget) {
+            addMarchToSharedPref();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void addMarchToSharedPref() {
+        March march = (March) getIntent().getSerializableExtra(HOME_FRAGMENT_TO_DETAIL_ACTIVITY_INTENT);
+        SharedPreferences preferences = getApplicationContext().getSharedPreferences(WIDGET_SHARED_PREF_KEY, MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(MARCH_TITLE_PREF_KEY, march.getTitle());
+        editor.putString(MARCH_VENUE_PREF_KEY, march.getLocation());
+        editor.putString(MARCH_TIME_PREF_KEY, march.getTime());
+        editor.apply();
+
+        MarchWidgetProvider.updateWidget(this);
     }
 
     private void populateLayout(March march) {

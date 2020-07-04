@@ -29,6 +29,15 @@
         <item name="android:lineSpacingMultiplier">@dimen/detail_body_line_spacing_multiplier</item>
     </style>
 
+    <!-- Widget Text Styles -->
+    <style name="PrimaryWidgetText" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textSize">@dimen/widget_primary_text_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="SecondaryWidgetText" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textSize">@dimen/widget_secondary_text_size</item>
+    </style>
+
     <!-- TextInputLayout Styles -->
     <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
         <item name="android:layout_marginStart">@dimen/text_input_horizontal_margin</item>

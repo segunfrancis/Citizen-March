@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:initialKeyguardLayout="@layout/march_widget"
+    android:initialLayout="@layout/march_widget"
+    android:minWidth="@dimen/widget_minWidth"
+    android:minHeight="@dimen/widget_minHeight"
+    android:previewImage="@drawable/fist"
+    android:resizeMode="horizontal|vertical"
+    android:updatePeriodMillis="86400000"
+    android:widgetCategory="home_screen"/>
